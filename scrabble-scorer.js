@@ -46,17 +46,13 @@ function initialPrompt() {
 let simpleScorer = function (word) {
    word = word.toUpperCase();
    let points = 0;
-   for (let i = 0; i < word.length; i++) {
-      if(word[i] === ' '){
-         points += 0;
-      } else {
+   while(points < word.length){
       points++;
-      }
    }
    return points;
    };
 
-// fucntion that looks for vowels and adds 3 points for them. 
+// function that looks for vowels and adds 3 points for them. 
 //Adds 0 for space and one for consonants   
 let vowelBonusScorer = function (word) {
       let vowels = ['A', 'E', 'I', 'O', 'U'];
@@ -109,16 +105,23 @@ function scorerPrompt(word) {
   console.log('2 - Scrabble: Uses scrabble point system');
 //Receives user input
   let scoreSelection = input.question('Enter 0, 1, or 2: ');
+  let output1 = function(arrname) {
+   console.log(`You've selected ${arrname}`)
+  };
+  let output2 = function(word, points) {
+   console.log(`Score for '${word}' is ${points}.`);
+  }; 
+
 //Selects scoring system based on user input
   if(Number(scoreSelection) === 0) {
-   console.log("You've selected simple scoring");
-   console.log(`Score for '${word}' is ${scoringAlgorithms[0].scorerFunction(word)}.`);
+   output1(scoringAlgorithms[0].name);
+   output2(word, scoringAlgorithms[0].scorerFunction(word));
   } else if (Number(scoreSelection) === 1){
-   console.log("You've selected vowel bonus scoring"); 
-   console.log(`Score for '${word}' is ${scoringAlgorithms[1].scorerFunction(word)}.`);
+   output1(scoringAlgorithms[1].name);
+   output2(word, scoringAlgorithms[1].scorerFunction(word));
   } else if(Number(scoreSelection)=== 2){
-   console.log("You've selected scrabble scoring");
-   console.log(`Score for '${word}' is ${scoringAlgorithms[2].scorerFunction(word,newPointStructure)}`);
+   output1(scoringAlgorithms[2].name);
+   output2(word,scoringAlgorithms[2].scorerFunction(word,newPointStructure));
    }
    else {
 //recalls function based on invalid user input
@@ -143,15 +146,28 @@ function transform(oldPointStructure) {
    return tempStructure;
 };
 
+
 //setting new point structure equal to transformed old point structure
 let newPointStructure = transform(oldPointStructure);
 //adds ' ' to new point structure
 newPointStructure[' '] = 0;
 
+let goAgain = function() {
+   let yesOrNo = input.question('Would you like to play again? Y/N ');
+   console.log(yesOrNo);
+   if(yesOrNo.toLowerCase() === "y"){
+      console.log(yesOrNo);
+      runProgram();
+   } else{
+      return;
+   }
+};
+
 //lines to run program
 function runProgram() {
    scorerPrompt(initialPrompt());
-   newPointStructure;
+   goAgain();
+
 }
 
 // Don't write any code below this line //
