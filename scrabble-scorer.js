@@ -73,9 +73,9 @@ let vowelBonusScorer = function (word) {
       return points;
    };
 
+//function takes in word and new point structure to score letters
 let scrabbleScorer = function (word, newPointStructure) {
 	let points = 0;
-   let objectLetter;
 	for(let i = 0; i < word.length; i++) {
       if(newPointStructure.hasOwnProperty(word[i].toLowerCase())){
       points += newPointStructure[word[i].toLowerCase()];
