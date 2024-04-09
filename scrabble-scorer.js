@@ -93,7 +93,8 @@ const scoringAlgorithms = [
    {  name: "Bonus Vowels",
       description: "Vowels are 3 pts, consonants are 1 pt.",
       scoreFunction: "A function that returns a score based on the number of vowels and consonants",
-      scorerFunction: vowelBonusScorer}, 
+      scorerFunction: vowelBonusScorer
+   }, 
    {  name: "Scrabble",
       description: 'The traditional scoring algorithm',
       scoreFunction: "Uses the oldScrabbleScorer() function to determine the score for a given word.",
